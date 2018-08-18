@@ -30,6 +30,31 @@ WhareWebRequest::~WhareWebRequest()
     cout << "WhareWebRequest Destructor" << endl;
 }
 
+string WhareWebRequest::Get(string endpoint, string client_id, function<void(string, int)> &&callback)
+{
+    struct curl_slist *headers = NULL;
+    CURL *curl = NULL;
+    curl  = curl_easy_init();
+    int httpCode(0);
+    cout << endl << "XXXX " << client_id << endl; 
+    if(curl)
+    {
+        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+        
+        //Set remote URL
+        curl_easy_setopt(curl, CURLOPT_URL, endpoint.c_str());
+        headers = curl_slist_append(headers, (const char *)auth_headers.c_str());
+        headers = curl_slist_append(headers, (const char *)client_id.c_str());
+        CURLcode res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, ResponseRecievedCallback);
+        res = curl_easy_perform(curl);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+    }
+    
+    callback(response_string, httpCode);
+
+    return response_string;
+}
 void WhareWebRequest::Post(string endpoint, string value, function<void(string, int)> &&callback)
 {
     struct curl_slist *headers = NULL;

@@ -28,7 +28,8 @@ public:
     ~WhareWebRequest();
     
     void Post(string endpoint, string value, function<void(string, int)> &&callback);
-    string get(string endpoint);
+    string Get(string endpoint, string client_id, function<void(string, int)> &&callback);
+    //string get(string endpoint);
     
     void AddHeaderFields(string n, string v);
     

@@ -74,19 +74,19 @@ std::size_t callback(
 //    if(curl)
 //    {
 //        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-//        
+//
 //        //Set remote URL
 //        curl_easy_setopt(curl, CURLOPT_URL, _virtualSpaceEndpoint.c_str());
-//        
+//
 //        headers = curl_slist_append(headers, (const char *)authorization_header.c_str());
 //        headers = curl_slist_append(headers, (const char *)client_id_header.c_str());
-//        
+//
 //        CURLcode res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 //        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
-//        
+//
 //        res = curl_easy_perform(curl);
 //        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-//        
+//
 ////        if(res != CURLE_OK)
 ////        {
 ////            cout << "Curl Response failed";

@@ -13,14 +13,21 @@
 #include <string>
 #include "KeyHandler.hpp"
 #include "WhareWebRequest.hpp"
+#include "json/json.hpp"
 #endif /* WhareAPI_hpp */
 
 using namespace std;
 
-template <typename T>
-std::function<T> toFunc(T* callback) {
-    return std::function<T>{ callback };
-}
+enum WhareRequestStatus {
+    
+    SUCCESS,
+    UNAUTHORIZED,
+    COULD_NOT_PARSE,
+    NOT_FOUND,
+    TIMED_OUT,
+    UNKNOWN_ERROR
+};
+
 
 class WhareAPI
 {
@@ -39,7 +46,8 @@ private:
     };
     
     void ProcessWebRequest(int, function<void(string, int)> &&callback);
-    void AddObject(string endpoint, string client_info, function<void(string, int)> &&callback);
+    void AddObject(string endpoint, string client_info, function<void(string, WhareRequestStatus)> &&callback);
+    string LoadVirtualSpace(string endpoint, string client_id);
     string GetAuthHeaders();
     
     KeyHandler *_key_handler;

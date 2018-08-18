@@ -8,6 +8,8 @@
 
 #include "WhareAPI.hpp"
 
+using nlohmann::json;
+
 WhareAPI::WhareAPI()
 {
     cout << "Instantiating WhareAPI class" << endl;
@@ -21,22 +23,20 @@ WhareAPI::~WhareAPI()
 void WhareAPI::RegisterApp(KeyHandler * key_handler)
 {
     _key_handler = key_handler;
-    string guid = "";
-    int result = 0;
-    AddObject(_appInstanceEndpoint, "user_id = Jayashree", [&guid, &result](string s, int v){
+    string client_id = "";
+    WhareRequestStatus result;
+    AddObject(_appInstanceEndpoint, "user_id = Jayashree", [&client_id, &result](string guid, WhareRequestStatus res){
         
-        result = v;
-        if(result == 201)
-        {
-            //isRegistered = true;
-            guid = s;
-            cout << "Now you can call other GET APIs" << s;
-        }
-        else
-        {
-            cout << "Error registering user";
-        }
+        cout << "Client ID: " << guid;
+        result = res;
+        client_id = "client_id: " + guid;
     });
+    
+    if(result == WhareRequestStatus::SUCCESS)
+    {
+        
+        LoadVirtualSpace(_virtualSpaceEndpoint, client_id);
+    }
     
 }
 
@@ -49,27 +49,40 @@ void WhareAPI::ProcessWebRequest(int httpCode, function<void(string, int)> &&cal
     else callback("client id recieved", httpCode);
 }
 
-void WhareAPI::AddObject(string endpoint, string client_info, function<void(string, int)> &&callback)
+void WhareAPI::AddObject(string endpoint, string client_info, function<void(string, WhareRequestStatus)> &&callback)
 {
     WhareWebRequest *www = new WhareWebRequest();
     string headers = GetAuthHeaders();
     www->AddHeaderFields(authorization_name, headers);
-    
-    string guid = "";
-    int  httpCode(0);
-    
-    www->Post(endpoint, "user_id: Jayashree", [&guid, &httpCode](string m, int v){
-        if(v == 201)
+//    bool isRegistered = false;
+//    string client_guid;
+    www->Post(endpoint, "user_id: Jayashree", [&](string guid, int http_code){
+        if(http_code == 201)
         {
-            cout << "Client Id: " << m;
-            guid = m;
+            json json_object = json::parse(guid);
+            callback(json_object["client_guid"], WhareRequestStatus::SUCCESS);
+//            isRegistered = true;
+//            client_guid = guid;
         }
-        cout << endl << m << "HTTP CODE: " << v;
-        httpCode = v;
+        else
+        {
+            //TODO: Add more clauses later
+            callback("", WhareRequestStatus::UNAUTHORIZED);
+        }
     });
     
-    callback(guid, httpCode);
+}
+
+string WhareAPI::LoadVirtualSpace(string endpoint, string client_id)
+{
+    WhareWebRequest *www = new WhareWebRequest();
+    string headers = GetAuthHeaders();
+    www->AddHeaderFields(authorization_name, headers);
+    string response_string = www->Get(endpoint, client_id, [&](string response, int code){
+        cout << response_string;
+    });
     
+    return response_string;
 }
 
 string WhareAPI::GetAuthHeaders()
