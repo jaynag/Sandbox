@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		A68908D72126343800281781 /* KeyHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68908D32126343800281781 /* KeyHandler.cpp */; };
 		A68908D92126343800281781 /* KeyHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A68908D52126343800281781 /* KeyHandler.hpp */; };
+		A68908DD2127299D00281781 /* json.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A68908DC2127299D00281781 /* json.hpp */; };
+		A68908E4212773B100281781 /* WhareAPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68908E2212773B100281781 /* WhareAPI.cpp */; };
+		A68908E5212773B100281781 /* WhareAPI.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A68908E3212773B100281781 /* WhareAPI.hpp */; };
+		A68908E82127926600281781 /* WhareWebRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A68908E62127926600281781 /* WhareWebRequest.cpp */; };
+		A68908E92127926600281781 /* WhareWebRequest.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A68908E72127926600281781 /* WhareWebRequest.hpp */; };
 		A6C03B97211E32B50005B52F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6C03B96211E32B50005B52F /* main.cpp */; };
 		A6C03D61211E3C930005B52F /* pem2.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C03D16211E3C930005B52F /* pem2.h */; };
 		A6C03D62211E3C930005B52F /* pem.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C03D17211E3C930005B52F /* pem.h */; };
@@ -105,6 +110,11 @@
 /* Begin PBXFileReference section */
 		A68908D32126343800281781 /* KeyHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyHandler.cpp; sourceTree = "<group>"; };
 		A68908D52126343800281781 /* KeyHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyHandler.hpp; sourceTree = "<group>"; };
+		A68908DC2127299D00281781 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
+		A68908E2212773B100281781 /* WhareAPI.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WhareAPI.cpp; sourceTree = "<group>"; };
+		A68908E3212773B100281781 /* WhareAPI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WhareAPI.hpp; sourceTree = "<group>"; };
+		A68908E62127926600281781 /* WhareWebRequest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WhareWebRequest.cpp; sourceTree = "<group>"; };
+		A68908E72127926600281781 /* WhareWebRequest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WhareWebRequest.hpp; sourceTree = "<group>"; };
 		A6C03B93211E32B50005B52F /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C03B96211E32B50005B52F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A6C03D16211E3C930005B52F /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
@@ -206,9 +216,21 @@
 			children = (
 				A68908D32126343800281781 /* KeyHandler.cpp */,
 				A68908D52126343800281781 /* KeyHandler.hpp */,
+				A68908E2212773B100281781 /* WhareAPI.cpp */,
+				A68908E3212773B100281781 /* WhareAPI.hpp */,
+				A68908E62127926600281781 /* WhareWebRequest.cpp */,
+				A68908E72127926600281781 /* WhareWebRequest.hpp */,
 			);
 			name = src;
 			path = Test/src;
+			sourceTree = "<group>";
+		};
+		A68908DB2127299D00281781 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				A68908DC2127299D00281781 /* json.hpp */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 		A6C03B8A211E32B50005B52F = {
@@ -241,6 +263,7 @@
 		A6C03D14211E3C930005B52F /* include */ = {
 			isa = PBXGroup;
 			children = (
+				A68908DB2127299D00281781 /* json */,
 				A6C03D15211E3C930005B52F /* openssl */,
 			);
 			path = include;
@@ -365,6 +388,7 @@
 				A6C03D88211E3C930005B52F /* srp.h in Headers */,
 				A6C03D94211E3C930005B52F /* ocsp.h in Headers */,
 				A6C03D61211E3C930005B52F /* pem2.h in Headers */,
+				A68908DD2127299D00281781 /* json.hpp in Headers */,
 				A6C03D75211E3C930005B52F /* rc2.h in Headers */,
 				A6C03D84211E3C930005B52F /* pkcs7.h in Headers */,
 				A6C03D6E211E3C930005B52F /* ui.h in Headers */,
@@ -385,6 +409,7 @@
 				A6C03D64211E3C930005B52F /* ossl_typ.h in Headers */,
 				A6C03D77211E3C930005B52F /* ui_compat.h in Headers */,
 				A6C03D87211E3C930005B52F /* ssl.h in Headers */,
+				A68908E92127926600281781 /* WhareWebRequest.hpp in Headers */,
 				A6C03D92211E3C930005B52F /* stack.h in Headers */,
 				A6C03DA1211E3C930005B52F /* ripemd.h in Headers */,
 				A6C03D86211E3C930005B52F /* buffer.h in Headers */,
@@ -395,6 +420,7 @@
 				A6C03D79211E3C930005B52F /* ssl23.h in Headers */,
 				A6C03D8F211E3C930005B52F /* comp.h in Headers */,
 				A6C03D70211E3C930005B52F /* sha.h in Headers */,
+				A68908E5212773B100281781 /* WhareAPI.hpp in Headers */,
 				A6C03D78211E3C930005B52F /* x509v3.h in Headers */,
 				A6C03D93211E3C930005B52F /* des.h in Headers */,
 				A6C03D73211E3C930005B52F /* opensslconf.h in Headers */,
@@ -484,6 +510,8 @@
 			files = (
 				A68908D72126343800281781 /* KeyHandler.cpp in Sources */,
 				A6C03B97211E32B50005B52F /* main.cpp in Sources */,
+				A68908E82127926600281781 /* WhareWebRequest.cpp in Sources */,
+				A68908E4212773B100281781 /* WhareAPI.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
